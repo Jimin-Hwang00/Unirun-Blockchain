@@ -31,6 +31,18 @@ async function sendReward(userAddress) {
     }
 }
 
+// 사용자 지갑에 있는 토큰 잔액 조회
+async function getTokenBalance(userAddress) {
+    try {
+        const balance = await contract.balanceOf(userAddress);
+        console.log(`${userAddress} token balance: ${balance}`);
+        return balance;
+    } catch (error) {
+        console.error(`Error fetching balance: ${error}`);
+    }
+}
+
 module.exports = {
     sendReward, 
+    getTokenBalance,
 }
