@@ -6,6 +6,7 @@ const development = {
   password: env.DEV_DB_PASSWORD,
   database: env.DEV_DB_DATABASE,
   host: env.DEV_DB_HOST,
+  port: env.DEV_DB_PORT, 
   dialect: "mariadb",
 }
 
@@ -14,6 +15,7 @@ const production = {
   password: env.PRD_DB_PASSWORD,
   database: env.PRD_DB_DATABASE,
   host: env.PRD_DB_HOST,
+  port: env.PRD_DB_PORT,
   dialect: "mariadb",
 }
 
@@ -22,6 +24,7 @@ const test = {
   password: env.DEV_DB_PASSWORD,
   database: env.DEV_DB_DATABASE,
   host: env.DEV_DB_HOST,
+  port: env.DEV_DB_PORT, 
   dialect: "mariadb",
 }
 
