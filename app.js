@@ -29,7 +29,9 @@ sequelize.sync({ force: false })
 
 // 토큰 라우터 설정
 const tokenRouter = require('./routes/token-router');
+const nftRouter = require('./routes/nft-router');
 app.use('/block-chain/token', tokenRouter);
+app.use('/block-chain/nfts', nftRouter);
 
 // 서버 시작
 app.listen(process.env.PORT || 3001, () => {
