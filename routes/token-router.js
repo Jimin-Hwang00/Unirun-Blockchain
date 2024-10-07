@@ -3,9 +3,9 @@ const router = express.Router();
 
 const dotenv = require('dotenv');
 
-const { getUserWalletAddress } = require('../services/user-service');
+const { getUserWalletAddress } = require('../services/user-model-service');
 const { sendReward, getTokenBalance } = require('../services/token-servce');
-const { createReward } = require('../services/reward-service');
+const { createReward } = require('../services/reward-model-service');
 
 const responseHelper = require('../helpers/response-helper');
 const redisClient = require('../config/redis-client');
