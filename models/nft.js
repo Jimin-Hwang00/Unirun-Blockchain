@@ -15,7 +15,7 @@ class Nft extends Sequelize.Model {
                 field: 'token_id',
                 comment: 'nft token id',
             },
-            metadata_uri: {
+            metadataUri: {
                 type: Sequelize.STRING,
                 field: 'metadata_uri',
                 comment: 'nft 메타데이터 uri', 
@@ -25,6 +25,11 @@ class Nft extends Sequelize.Model {
                 field: 'owner_address',
                 commnet: 'nft 소유자 주소',
             },
+            universityId: {
+                type: Sequelize.INTEGER,
+                field: 'university_id',
+                comment: 'nft 아이템의 학교 id',
+            }
         }, {    // 테이블 자체에 대한 설정
             sequelize,
             timestamps: false,
