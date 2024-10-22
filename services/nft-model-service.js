@@ -29,7 +29,23 @@ async function getNftsByOwnerAddress(ownerAddress) {
     }
 }
 
-module.exports = {
+// tokenId를 통해 nft 소유자 변경 
+async function updateNftOwnerAddress(tokenId, newOwnerAddress) {
+    try {
+        const nft = await Nft.update({
+            ownerAddress: newOwnerAddress,
+            where: {
+                tokenId: tokenId
+            }
+        });
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+}
+
+module.exports = { 
     getAllNfts,
     getNftsByOwnerAddress,
+    updateNftOwnerAddress,
 }

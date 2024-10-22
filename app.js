@@ -33,6 +33,14 @@ const nftRouter = require('./routes/nft-router');
 app.use('/block-chain/token', tokenRouter);
 app.use('/block-chain/nfts', nftRouter);
 
+// cors 설정
+app.use(cors({
+    origin: 'http://yourfrontenddomain.com',  // 특정 도메인만 허용
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Cookie'],  // 허용할 헤더 목록
+    credentials: true
+  }));
+
 // 서버 시작
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Unirun blockchain server: ${process.env.PORT || 3001} port`);
