@@ -4,6 +4,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const RedisStore = require('connect-redis').default; // 세션을 매개변수로 전달해 호출
 const redisClient = require('./config/redis-client'); // redisClient.js에서 가져옴
+const cors = require('cors');
 
 app.use(express.json());
 app.use(cookieParser());
