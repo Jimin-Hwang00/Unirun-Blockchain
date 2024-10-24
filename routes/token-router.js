@@ -11,6 +11,7 @@ const responseHelper = require('../helpers/response-helper');
 const redisClient = require('../config/redis-client');
 
 router.post('/reward', async (req, res) => {
+    console.log("/reward request");
     // 쿠키에서 세션 ID를 가져옵니다.
     const sessionId = req.cookies['SESSIONID'];
 
@@ -65,6 +66,7 @@ router.post('/reward', async (req, res) => {
 
 // 토큰 보유 잔액 조회
 router.get('/my-tokens', async(req, res) => {
+    console.log("/my-tokens request");
     // 쿠키에서 세션 ID를 가져옵니다.
     const sessionId = req.cookies['SESSIONID'];
 
@@ -100,6 +102,7 @@ router.get('/my-tokens', async(req, res) => {
 
         if (balance != false) {
             const convertedBalance = balance / BigInt(1000000000000000000);
+            console.log(`convertedBalance: ${convertedBalance} -> get token amount success`);
             return responseHelper.response(res, 200, "SUCCESS", convertedBalance.toString());
         } else {
             return responseHelper.response(res, 500, "An internal server error occurred. Please try again later.", null);
@@ -112,6 +115,7 @@ router.get('/my-tokens', async(req, res) => {
 });
 
 router.get('/my-wallet-address', async (req, res) => {
+    console.log("/my-wallet-address request");
      // 쿠키에서 세션 ID를 가져옵니다.
      const sessionId = req.cookies['SESSIONID'];
 

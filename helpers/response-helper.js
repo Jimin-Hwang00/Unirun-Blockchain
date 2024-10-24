@@ -7,7 +7,7 @@ module.exports = {
             .toFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ'[Asia/Seoul]'"); 
 
         res.status(status).json({
-            statusCode: status,
+            status: status,
             message: msg, 
             data: data,
             sendTime: sendTime
