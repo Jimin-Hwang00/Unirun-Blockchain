@@ -99,14 +99,11 @@ router.get('/my-tokens', async(req, res) => {
         console.log(`User wallet address: ${userWalletAddress}`);
 
         const balance = await getTokenBalance(userWalletAddress);
+        console.log(`getTokenBalance() result : balance is ${balance}`);
 
-        if (balance != false) {
-            const convertedBalance = balance / BigInt(1000000000000000000);
-            console.log(`convertedBalance: ${convertedBalance} -> get token amount success`);
-            return responseHelper.response(res, 200, "SUCCESS", convertedBalance.toString());
-        } else {
-            return responseHelper.response(res, 500, "An internal server error occurred. Please try again later.", null);
-        }
+        const convertedBalance = balance / BigInt(1000000000000000000);
+        console.log(`convertedBalance: ${convertedBalance} -> get token amount success`);
+        return responseHelper.response(res, 200, "SUCCESS", convertedBalance.toString());
     } catch (err) {
         // 오류 발생 시 404 에러 반환
         console.log(`Error occurred while getting token balance: ${err}`);
