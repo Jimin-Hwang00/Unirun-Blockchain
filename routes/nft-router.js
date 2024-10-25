@@ -14,13 +14,17 @@ const redisClient = require('../config/redis-client');
 router.get('/', async (req, res) => {
     try {
         const nfts = await getAllNfts();
+
+        const filteredNfts = nfts.filter(nft => nft.tokenId !== '0' && nft.ownerAddress == process.env.UNIRUN_WALLET_ADDRESS);
+
+         console.log(filteredNfts)
     
-        const promises = nfts.map(async (nft) => {
-            const university = await getUniversityById(nft.universityId);
+        const promises = filteredNfts.map(async (filteredNft) => {
+            const university = await getUniversityById(filteredNft.universityId);
             
             return {
-                tokenId: nft.tokenId,
-                tokenURI: nft.metadataUri,
+                tokenId: filteredNft.tokenId,
+                tokenURI: filteredNft.metadataUri,
                 tokenPrice: 100, 
                 universityName: university.universityName,
                 universityUrl: university.imageUrl,
@@ -72,7 +76,7 @@ router.get('/my-nfts', async (req, res) => {
          
          const promises = nfts.map(async (nft) => {
             const university = await getUniversityById(nft.universityId);
-            
+        
             return {
                 cardUri: nft.cardUri
             };
