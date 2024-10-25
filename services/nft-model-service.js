@@ -44,8 +44,24 @@ async function updateNftOwnerAddress(tokenId, newOwnerAddress) {
     }
 }
 
+// tokenId를 통해 nft 데이터 조회
+async function getNftByTokenId(tokenId) {
+    try {
+        const nft = await Nft.findOne({
+            where: {
+                tokenId: tokenId
+            }
+        })
+        return nft;
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
 module.exports = { 
     getAllNfts,
     getNftsByOwnerAddress,
     updateNftOwnerAddress,
+    getNftByTokenId,
 }

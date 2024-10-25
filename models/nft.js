@@ -29,6 +29,11 @@ class Nft extends Sequelize.Model {
                 type: Sequelize.INTEGER,
                 field: 'university_id',
                 comment: 'nft 아이템의 학교 id',
+            }, 
+            cardUri: {
+                type: Sequelize.STRING,
+                field: 'card_uri',
+                comment: 'nft 아이템 카드', 
             }
         }, {    // 테이블 자체에 대한 설정
             sequelize,

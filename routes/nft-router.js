@@ -3,7 +3,7 @@ const router = express.Router();
 
 const dotenv = require('dotenv');
 
-const { getAllNfts, getNftsByOwnerAddress, updateNftOwnerAddress } = require('../services/nft-model-service');
+const { getAllNfts, getNftsByOwnerAddress, updateNftOwnerAddress, getNftByTokenId } = require('../services/nft-model-service');
 const { getUniversityById } = require('../services/university-model-service');
 const { getUserWalletAddress } = require('../services/user-model-service');
 
@@ -74,15 +74,24 @@ router.get('/my-nfts', async (req, res) => {
             const university = await getUniversityById(nft.universityId);
             
             return {
-                tokenId: nft.tokenId,
-                tokenURI: nft.metadataUri,
-                tokenPrice: 100, 
-                universityName: university.universityName,
-                universityUrl: university.imageUrl,
+                cardUri: nft.cardUri
             };
         });
     
-        const results = await Promise.all(promises);
+        var results = await Promise.all(promises);
+
+        // results가 0개인지 확인
+        if (results.length === 0) {
+            const nft = await getNftByTokenId(0);
+            console.log(nft.cardUri);
+
+            results = [{
+                cardUri: nft.dataValues.cardUri
+            }]
+
+            console.log(results);
+        }
+
         return responseHelper.response(res, 200, "SUCCESS", results);
      } catch (err) {
          // 오류 발생 시 404 에러 반환
